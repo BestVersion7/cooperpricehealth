@@ -1,0 +1,229 @@
+@mixin mQ($width) {
+    @media (min-width: $width) {
+        @content;
+    }
+}
+
+$bgColor: rgb(216, 210, 210);
+
+@mixin imgRound {
+    border-radius: 15em;
+}
+
+@mixin paddingTopBottom {
+    padding-top: 1.5em;
+    padding-bottom: 3em;
+}
+
+@mixin LinkRemoveStyle {
+    text-decoration: none;
+    color: black;
+}
+
+.link-no-style {
+    @include LinkRemoveStyle();
+}
+
+body {
+    padding: 0;
+    margin: auto;
+    // background-color: aliceblue;
+    max-width: 110em;
+    text-align: left;
+    display: grid;
+    .main-wrapper {
+        text-align: center;
+        background-color: #fff;
+        .main-quiz {
+            background-color: #a1c345;
+            padding: 1em;
+        }
+    }
+}
+
+header {
+    background-color: #f9e8e8;
+    text-align: right;
+    nav {
+        margin: 1em 0;
+        .link-nav-header {
+            display: block;
+            padding: 0 0.5em;
+            text-decoration: none;
+            font-size: 1.5em;
+            color: black;
+            @include mQ(30em) {
+                display: inline;
+            }
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+ul {
+    display: inline-block;
+    text-align: left;
+}
+
+.section-intro {
+    display: grid;
+    align-items: center;
+    background-color: $bgColor;
+    padding-bottom: 4em;
+    @include mQ(30em) {
+        grid-template-columns: 2fr 1fr;
+        @include paddingTopBottom();
+    }
+}
+.img-intro {
+    @include imgRound();
+}
+
+.team-container {
+    display: grid;
+    @include mQ(50em) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.team-container-booking {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+    grid-gap: 2em;
+    @include mQ(50em) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .team-container-booking-item {
+        margin: auto;
+        border: 2px dashed black;
+        &:hover {
+            background-color: orange;
+            cursor: pointer;
+            // background-color: darken(, 5);
+        }
+    }
+
+    .team-container-booking-image {
+        // @include mQ(30em) {
+        //     display: grid;
+        //     grid-template-columns: 1fr 1fr;
+        // }
+        .img-team-container {
+            width: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+            // border-radius: 10%
+            // display: none;
+        }
+    }
+}
+
+.section-helplist,
+.section-how,
+.section-appointment,
+.section-testimonial {
+    @include paddingTopBottom();
+}
+
+.section-how {
+    background-color: $bgColor;
+}
+
+.section-appointment {
+    background-color: #f9e8e8;
+}
+
+.section-how {
+    display: grid;
+    @include mQ(50em) {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+.ul-store,
+.ul-helplist {
+    list-style-image: url("https://s3.amazonaws.com/images.teladoc.com/www/2022/Dermatology/check.png");
+}
+
+.ul-helplist {
+    @include mQ(45em) {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+    }
+    .li-helplist {
+        padding: 0.5em 0;
+    }
+}
+
+.section-faq {
+    .faq {
+        display: grid;
+        grid-template-rows: repeat(auto-fill, minmax(4em, auto));
+        list-style-type: none;
+        .faq-item {
+            background-color: inherit;
+            border: 1px solid black;
+            width: 100%;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.store:hover {
+    cursor: pointer;
+}
+
+.main-booking {
+    margin: 0 2em;
+    @include mQ(50em) {
+        margin: 0 5em;
+    }
+}
+
+footer {
+    background-color: rgb(226, 246, 253);
+    padding-top: 1.5em;
+    .footer-main {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
+        font-size: small;
+        div {
+            div {
+                padding: 0.3em 0;
+            }
+        }
+    }
+    .footer-additional {
+        display: grid;
+        @include mQ(50em) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+    .footer-link {
+        color: black;
+        text-decoration: none;
+    }
+}
+
+.patient-form {
+    display: grid;
+    grid-template-columns: 7em 1fr;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+}
+
+.calendar-wrapper {
+    @include mQ(50em) {
+        display: grid;
+        grid-gap: 3em;
+        grid-template-columns: auto 1fr;
+    }
+}
