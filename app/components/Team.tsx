@@ -133,7 +133,7 @@ export default (props: props) => {
                     </p>
                     <PatientForm {...state} />
                 </div>
-            )} 
+            )}
         </>
     );
 };
