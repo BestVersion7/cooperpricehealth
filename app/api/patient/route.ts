@@ -7,7 +7,6 @@ export async function GET(req: NextRequest) {
         headers: {
             authorization: `${process.env.API_KEY}`,
         },
-        cache: "no-store",
     });
     if (patient_id) {
         result = await fetch(
@@ -16,7 +15,7 @@ export async function GET(req: NextRequest) {
                 headers: {
                     authorization: `${process.env.API_KEY}`,
                 },
-                cache: "no-store",
+                cache: "force-cache",
             }
         );
     }

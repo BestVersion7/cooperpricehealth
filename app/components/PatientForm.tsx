@@ -1,9 +1,10 @@
 "use client";
-import { IBooking, IPatient } from "../types/types";
+import { IBooking } from "../types/types";
 import { createBooking, createPatient } from "../util/apiRequest";
 import { useEffect, useState, useReducer } from "react";
 import { patientFormReducer } from "../util/reducer";
 // import { formatPhone } from "../util/formatDate";
+import Button from "react-bootstrap/Button";
 
 export default (props: Omit<IBooking, "booking_id">) => {
     const initialState = {
@@ -49,7 +50,10 @@ export default (props: Omit<IBooking, "booking_id">) => {
     const getPatient = async (signal: AbortSignal) => {
         const result = await fetch(
             `/api/patient?patient_id=${props.patient_id}`,
-            { signal }
+            {
+                cache: "force-cache",
+                signal,
+            }
         );
         const data = await result.json();
         dispatch({ type: "initial-fetch", payload: data });
@@ -82,8 +86,8 @@ export default (props: Omit<IBooking, "booking_id">) => {
 
     return (
         <>
-            <button onClick={handleChangeDefaultUser}>Default User</button>
-            <button onClick={handleChangeUser}>New User</button>
+            <Button onClick={handleChangeDefaultUser}>Default User</Button>{" "}
+            <Button onClick={handleChangeUser}>New User</Button>
             <form onSubmit={handleSubmit} className="patient-form">
                 <label>First Name:</label>
                 <input
@@ -120,7 +124,7 @@ export default (props: Omit<IBooking, "booking_id">) => {
                     onChange={handleTextChange}
                     required
                 />{" "}
-                <button type="submit">Submit</button>
+                <Button type="submit">Submit</Button>
             </form>
         </>
     );
