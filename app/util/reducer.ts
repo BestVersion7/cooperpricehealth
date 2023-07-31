@@ -50,13 +50,22 @@ export const bookingReducer = (state: IBookingState, action: action) => {
     }
 };
 
-export const patientFormReducer = (
-    state: Omit<IPatient, "patient_id">,
-    action: keyAction
-) => {
+type initialFetch = {
+    type: "initial-fetch";
+    payload: IPatient;
+};
+type patientAction = keyAction | initialFetch;
+
+export const patientFormReducer = (state: IPatient, action: patientAction) => {
     switch (action.type) {
         case "text-change":
             return { ...state, [action.payload.key]: action.payload.value };
+        case "initial-fetch":
+            return {
+                ...state,
+                ...action.payload,
+            };
+        // return { patient_id: 1, ...action.payload };
         default:
             throw new Error("fail");
     }
