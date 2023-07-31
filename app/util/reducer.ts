@@ -1,4 +1,4 @@
-import { IBooking } from "../types/types";
+import { IBooking, IPatient } from "../types/types";
 
 type keyAction = {
     type: "text-change";
@@ -45,6 +45,18 @@ export const bookingReducer = (state: IBookingState, action: action) => {
         }
         case "show-patient-form":
             return { ...state, showPatientForm: action.payload };
+        default:
+            throw new Error("fail");
+    }
+};
+
+export const patientFormReducer = (
+    state: Omit<IPatient, "patient_id">,
+    action: keyAction
+) => {
+    switch (action.type) {
+        case "text-change":
+            return { ...state, [action.payload.key]: action.payload.value };
         default:
             throw new Error("fail");
     }

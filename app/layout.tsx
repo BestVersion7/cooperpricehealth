@@ -26,11 +26,14 @@ export default function RootLayout({
                             Home
                         </Link>
                         <Link className="link-nav-header" href="/booking">
-                            Schedule
+                            Booking
                         </Link>
-                        <Link className="link-nav-header" href="/secret">
+                        <Link className="link-nav-header" href="/calendar">
+                            Calendar
+                        </Link>
+                        {/* <Link className="link-nav-header" href="/secret">
                             Secret
-                        </Link>
+                        </Link> */}
                     </nav>
                 </header>
                 {children}

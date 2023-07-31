@@ -21,6 +21,26 @@ export async function GET(req: NextRequest) {
                 },
             }
         );
+    } else if (doctor_id) {
+        result = await fetch(
+            `https://www.hunterkf.com/api/booking?doctor_id=${doctor_id}`,
+            {
+                cache: "no-store",
+                headers: {
+                    authorization: `${process.env.API_KEY}`,
+                },
+            }
+        );
+    } else if (booking_date) {
+        result = await fetch(
+            `https://www.hunterkf.com/api/booking?booking_date=${booking_date}`,
+            {
+                cache: "no-store",
+                headers: {
+                    authorization: `${process.env.API_KEY}`,
+                },
+            }
+        );
     }
 
     const data = await result.json();

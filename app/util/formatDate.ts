@@ -38,7 +38,9 @@ export const formatDate2 = (date: Date) => {
 
 export const convert24to12 = (hour: number) => {
     let newHour;
-    if (hour <= 12) {
+    if (hour === 0 || hour === 24) {
+        newHour = "12 AM";
+    } else if (hour <= 12) {
         newHour = hour + " AM";
     } else {
         newHour = (hour % 12) + " PM";

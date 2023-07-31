@@ -76,7 +76,7 @@ export default (props: props) => {
     return (
         <>
             {/* page 1 */}
-            <p>Step 1: Select a provider to book an appointment.</p>
+            {/* <p>Step 1: Select a provider to book an appointment.</p>
 
             <div className="team-container-booking patient-form-step">
                 {therapists.map((item, index) => (
@@ -109,10 +109,10 @@ export default (props: props) => {
                         </div>
                     </div>
                 ))}
-            </div>
+            </div> */}
 
             {/* page 2 */}
-            {state.showCalendar && (
+            {/* {state.showCalendar && (
                 <div className="patient-form-step">
                     <p>Step 2: Select a time on calendar.</p>
                     <div className="calendar-wrapper">
@@ -122,15 +122,18 @@ export default (props: props) => {
                         )}
                     </div>
                 </div>
-            )}
+            )} */}
 
             {/* page 3 */}
-            {state.showPatientForm && (
+            {/* {state.showPatientForm && ( */}
                 <div className="patient-form-step">
-                    <p>Step 3: Fill in your name and email.</p>
+                    <p>
+                        Step 3: Fill in your name and email.{" "}
+                        {`(These are the default values.)`}
+                    </p>
                     <PatientForm {...state} />
                 </div>
-            )}
+            {/* )} */}
         </>
     );
 };

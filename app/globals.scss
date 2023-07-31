@@ -222,6 +222,9 @@ th,
 td {
     border: 1px solid black;
 }
+th {
+    width: 10em;
+}
 
 .calendar-wrapper {
     @include mQ(50em) {
