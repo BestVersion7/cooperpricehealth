@@ -7,15 +7,8 @@ import { bookingReducer } from "../util/reducer";
 import PatientForm from "./PatientForm";
 import Calendar from "./Calendar";
 import CalendarAvail from "./CalendarAvail";
-
-const formatPhone = (phone: number) => {
-    const phoneString = phone.toString();
-    phoneString.slice(0, 3);
-    return `(${phoneString.slice(0, 3)}) ${phoneString.slice(
-        3,
-        6
-    )}-${phoneString.slice(6, 10)}`;
-};
+import { formatPhone } from "../util/formatDate";
+import convertedDate from "../util/convertedDate";
 
 type props = {
     showDesc?: boolean;
@@ -25,11 +18,10 @@ export default (props: props) => {
     const initialState = {
         doctor_id: 0,
         patient_id: 1,
-        booking_date: new Date(
-            `${new Date().toISOString().slice(0, 11)}04:00:00.000Z`
-        ),
+        booking_date: convertedDate,
         booking_time: 0,
         showCalendar: false,
+        showCalendarAvailability: false,
         showPatientForm: false,
     };
 
@@ -78,6 +70,7 @@ export default (props: props) => {
         });
         dispatch({ type: "show-calendar" });
         dispatch({ type: "show-patient-form", payload: false });
+        dispatch({ type: "show-calendar-availability", payload: false });
     };
 
     return (
@@ -85,8 +78,8 @@ export default (props: props) => {
             {/* page 1 */}
             <p>Step 1: Select a provider to book an appointment.</p>
 
-            <div className="team-container-booking">
-                {therapists.map((item) => (
+            <div className="team-container-booking patient-form-step">
+                {therapists.map((item, index) => (
                     <div
                         key={item.doctor_id}
                         className="team-container-booking-item"
@@ -102,7 +95,10 @@ export default (props: props) => {
                                 src={item.doctor_image}
                                 alt="doctor"
                             />
-                            <div className="sam">
+                            <div style={{ textAlign: "center" }}>
+                                <h3>
+                                    <b>Provider #{index + 1}</b>
+                                </h3>
                                 <p>
                                     Name: {item.doctor_first_name}{" "}
                                     {item.doctor_last_name}
@@ -117,24 +113,23 @@ export default (props: props) => {
 
             {/* page 2 */}
             {state.showCalendar && (
-                <>
+                <div className="patient-form-step">
                     <p>Step 2: Select a time on calendar.</p>
                     <div className="calendar-wrapper">
                         <Calendar dispatch={dispatch} />
-                        <CalendarAvail {...state} dispatch={dispatch} />
-                    </div>{" "}
-                    <br />
-                    <br />
-                </>
+                        {state.showCalendarAvailability && (
+                            <CalendarAvail {...state} dispatch={dispatch} />
+                        )}
+                    </div>
+                </div>
             )}
 
             {/* page 3 */}
             {state.showPatientForm && (
-                <>
+                <div className="patient-form-step">
                     <p>Step 3: Fill in your name and email.</p>
-                    <PatientForm {...state} /> <br />
-                    <br />
-                </>
+                    <PatientForm {...state} />
+                </div>
             )}
         </>
     );

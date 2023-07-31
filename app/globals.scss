@@ -1,3 +1,5 @@
+@import "~bootstrap/scss/bootstrap";
+
 @mixin mQ($width) {
     @media (min-width: $width) {
         @content;
@@ -114,6 +116,7 @@ ul {
             width: 100%;
             object-fit: cover;
             opacity: 0.9;
+            padding-bottom: 1em;
             // border-radius: 10%
             // display: none;
         }
@@ -226,4 +229,8 @@ td {
         grid-gap: 3em;
         grid-template-columns: auto 1fr;
     }
+}
+
+.patient-form-step {
+    padding: 1.5em 0;
 }

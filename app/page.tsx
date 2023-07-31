@@ -108,7 +108,9 @@ export default () => {
 
             <section className="section-testimonial">
                 <h2>Real stories. Real people.</h2>
-                <div style={{ color: "orange" }}>X X X X X</div>
+                <div style={{ color: "orange", fontSize: "2em" }}>
+                    {"★★★★★"}
+                </div>
                 <div>
                     <p>
                         "The therapist that I met has helped me through so much

@@ -3,6 +3,15 @@ export const formatDate = (date: any) => {
     return newData.split("T")[0];
 };
 
+export const formatPhone = (phone: number) => {
+    const phoneString = phone.toString();
+    phoneString.slice(0, 3);
+    return `(${phoneString.slice(0, 3)}) ${phoneString.slice(
+        3,
+        6
+    )}-${phoneString.slice(6, 10)}`;
+};
+
 export const formatDate2 = (date: Date) => {
     const longMonths = [
         "January",

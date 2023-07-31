@@ -5,6 +5,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { formatDate } from "../util/formatDate";
 import { action } from "../util/reducer";
+import convertedDate from "../util/convertedDate";
 
 type ValuePiece = Date | null;
 export type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -14,7 +15,7 @@ type props = {
 };
 
 export default (props: props) => {
-    const [date, setDate] = useState<Value>(new Date());
+    const [date, setDate] = useState<Value>(convertedDate);
 
     // blackout dates before today and blackout days 60 days in advance
     // const dates = ["2023-07-28T04:00:00.000Z"];
@@ -38,6 +39,14 @@ export default (props: props) => {
                 key: "booking_time",
                 value: 0,
             },
+        });
+        props.dispatch({
+            type: "show-calendar-availability",
+            payload: true,
+        });
+        props.dispatch({
+            type: "show-patient-form",
+            payload: false,
         });
     };
 

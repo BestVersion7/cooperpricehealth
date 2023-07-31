@@ -18,7 +18,10 @@ type TimeSlots = {
 };
 export default (props: props) => {
     const ISODate = props.booking_date.toISOString();
-    const availability: number[] = [8, 9, 10, 11, 14, 15, 16, 17, 18];
+
+    const availability: number[] = [
+        8, 9, 10, 11, 14, 15, 16, 17, 18, 20, 21, 22,
+    ];
     const [timeSlots, setTimesSlots] = useState<TimeSlots[]>([]);
 
     // get the time availability
@@ -94,6 +97,16 @@ export default (props: props) => {
         });
         props.dispatch({ type: "show-patient-form", payload: true });
     };
+
+    // remove sunday
+    if (props.booking_date.getDay() === 0) {
+        return (
+            <div>
+                <p>Availability for {formatDate2(props.booking_date)} </p>No
+                Availability
+            </div>
+        );
+    }
     return (
         <div>
             <p>Availability for {formatDate2(props.booking_date)} </p>

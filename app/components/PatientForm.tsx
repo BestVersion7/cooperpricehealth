@@ -2,8 +2,17 @@
 import { IBooking, IPatient } from "../types/types";
 import { createBooking } from "../util/apiRequest";
 import { useEffect, useState } from "react";
+// import { formatPhone } from "../util/formatDate";
 
 export default (props: Omit<IBooking, "booking_id">) => {
+    // const initialState = {
+    //     patient_id: props.patient_id,
+    //     patient_first_name: "a",
+    //     patient_last_name: "a",
+    //     patient_email: "a",
+    //     patient_phone: 0,
+    // };
+
     const [patient, setPatient] = useState<IPatient>();
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -14,7 +23,6 @@ export default (props: Omit<IBooking, "booking_id">) => {
             patient_id: props.patient_id,
             doctor_id: props.doctor_id,
         });
-        console.log(props.booking_date);
         console.log(data);
     };
 
@@ -51,7 +59,7 @@ export default (props: Omit<IBooking, "booking_id">) => {
             />{" "}
             <label>Phone:</label>
             <input
-                type="text"
+                type="number"
                 name="patient_phone"
                 defaultValue={patient?.patient_phone}
             />{" "}
