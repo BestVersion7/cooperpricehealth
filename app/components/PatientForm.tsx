@@ -6,7 +6,7 @@ import { patientFormReducer } from "../util/reducer";
 // import { formatPhone } from "../util/formatDate";
 import Button from "react-bootstrap/Button";
 
-export default (props: Omit<IBooking, "booking_id">) => {
+export default function PatientForm(props: Omit<IBooking, "booking_id">) {
     const initialState = {
         patient_id: props.patient_id,
         patient_first_name: "",
@@ -38,13 +38,17 @@ export default (props: Omit<IBooking, "booking_id">) => {
         } else {
             patient_id = props.patient_id;
         }
-        const data = await createBooking({
-            booking_date: props.booking_date,
-            booking_time: props.booking_time,
-            patient_id: patient_id,
-            doctor_id: props.doctor_id,
-        });
-        console.log(data);
+        try {
+            const data = await createBooking({
+                booking_date: props.booking_date,
+                booking_time: props.booking_time,
+                patient_id: patient_id,
+                doctor_id: props.doctor_id,
+            });
+            console.log(data);
+        } catch (err) {
+            alert(err);
+        }
     };
 
     const getPatient = async (signal: AbortSignal) => {
@@ -86,10 +90,18 @@ export default (props: Omit<IBooking, "booking_id">) => {
 
     return (
         <>
-            <Button onClick={handleChangeDefaultUser}>Default User</Button>{" "}
-            <Button onClick={handleChangeUser}>New User</Button>
-            <form onSubmit={handleSubmit} className="patient-form">
-                <label>First Name:</label>
+            <Button
+                variant="warning"
+                size="sm"
+                onClick={handleChangeDefaultUser}
+            >
+                Test Client
+            </Button>{" "}
+            <Button variant="info" size="sm" onClick={handleChangeUser}>
+                New Client
+            </Button>
+            <form onSubmit={handleSubmit}>
+                <label>First Name: {`(required)`}</label> <br />
                 <input
                     disabled={disableBtn}
                     type="text"
@@ -98,7 +110,8 @@ export default (props: Omit<IBooking, "booking_id">) => {
                     onChange={handleTextChange}
                     required
                 />{" "}
-                <label>Last Name:</label>
+                <br />
+                <label>Last Name: {`(required)`}</label> <br />
                 <input
                     disabled={disableBtn}
                     type="text"
@@ -107,15 +120,17 @@ export default (props: Omit<IBooking, "booking_id">) => {
                     onChange={handleTextChange}
                     required
                 />{" "}
-                <label>Phone:</label>
+                <br />
+                <label>Phone: {`(optional)`}</label> <br />
                 <input
                     disabled={disableBtn}
                     type="number"
                     name="patient_phone"
-                    value={state.patient_phone}
+                    value={state.patient_phone || ""}
                     onChange={handleTextChange}
                 />{" "}
-                <label>Email:</label>
+                <br />
+                <label>Email: {`(required)`}</label> <br />
                 <input
                     disabled={disableBtn}
                     type="text"
@@ -124,8 +139,9 @@ export default (props: Omit<IBooking, "booking_id">) => {
                     onChange={handleTextChange}
                     required
                 />{" "}
+                <br /> <br />
                 <Button type="submit">Submit</Button>
             </form>
         </>
     );
-};
+}

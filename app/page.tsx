@@ -16,7 +16,7 @@ const helpList = [
     "Mood swings",
 ];
 
-export default () => {
+export default function Home() {
     return (
         <main className="main-wrapper">
             <div className="main-quiz">
@@ -151,4 +151,4 @@ export default () => {
             </section>
         </main>
     );
-};
+}

@@ -16,7 +16,7 @@ type TimeSlots = {
     booking_time: number;
     taken: boolean;
 };
-export default (props: props) => {
+export default function CalendarAvail(props: props) {
     const ISODate = props.booking_date.toISOString();
 
     const availability: number[] = [
@@ -123,4 +123,4 @@ export default (props: props) => {
             ))}
         </div>
     );
-};
+}

@@ -1,9 +1,9 @@
 import AllBookings from "../components/AllBookings";
 
-export default () => {
+export default function Secret() {
     return (
         <main>
             <AllBookings />
         </main>
     );
-};
+}

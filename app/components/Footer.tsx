@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default () => {
+export default function Footer() {
     return (
         <footer>
             <div className="footer-main">
@@ -83,4 +83,4 @@ export default () => {
             <br />
         </footer>
     );
-};
+}

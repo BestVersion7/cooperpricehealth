@@ -1,6 +1,6 @@
 import AllBookings from "../components/AllBookings";
 
-export default () => {
+export default function Calendar() {
     return (
         <div>
             <h2>Calendar</h2>
@@ -10,4 +10,4 @@ export default () => {
             <br />
         </div>
     );
-};
+}

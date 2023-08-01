@@ -2,7 +2,7 @@
 
 import { faq } from "./questionaire";
 
-export default () => {
+export default function Faqs() {
     const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
         const card: any = document.getElementById(
             `faq-answer-card-${e.currentTarget.value}`
@@ -32,4 +32,4 @@ export default () => {
             ))}
         </>
     );
-};
+}

@@ -3,7 +3,7 @@
 import { useEffect, useReducer, useState } from "react";
 import { IBooking, IPatient, IDoctor } from "../types/types";
 import { convert24to12 } from "../util/formatDate";
-import Button from 'react-bootstrap/Button'
+import Button from "react-bootstrap/Button";
 
 interface BookingMap extends IBooking {
     doctor: IDoctor;
@@ -51,7 +51,7 @@ const dashBoardReducer = (state: BookingDetails, action: action) => {
     }
 };
 
-export default () => {
+export default function AllBookings() {
     const initialState = {
         total: 0,
         currentPage: 1,
@@ -163,4 +163,4 @@ export default () => {
             </table>
         </div>
     );
-};
+}

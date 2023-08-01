@@ -11,6 +11,9 @@ export const createBooking = async (data2: Omit<IBooking, "booking_id">) => {
         },
     });
     const data = await result.json();
+    if (data === "error") {
+        throw new Error("Something went wrong. Please try again");
+    }
     return data;
 };
 

@@ -6,6 +6,6 @@ type props = {
     color: string;
 };
 
-export default (props: props) => {
+export default function ButtonLink(props: props) {
     return <Button variant={props.color}>{props.children}</Button>;
-};
+}

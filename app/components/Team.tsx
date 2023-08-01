@@ -127,10 +127,7 @@ export default (props: props) => {
             {/* page 3 */}
             {state.showPatientForm && (
                 <div className="patient-form-step">
-                    <p>
-                        Step 3: Fill in your name and email.{" "}
-                        {`(These are the default values.)`}
-                    </p>
+                    <p>Step 3: Fill in your name and email. </p>
                     <PatientForm {...state} />
                 </div>
             )}
