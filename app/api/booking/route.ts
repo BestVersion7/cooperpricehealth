@@ -5,12 +5,13 @@ export async function GET(req: NextRequest) {
     const doctor_id = Number(req.nextUrl.searchParams.get("doctor_id"));
     const booking_id = Number(req.nextUrl.searchParams.get("booking_id"));
 
-    let result = await fetch("https://www.hunterkf.com/api/booking", {
-        cache: "no-store",
-        headers: {
-            authorization: `${process.env.API_KEY}`,
-        },
-    });
+    let result;
+    // = await fetch("https://www.hunterkf.com/api/booking", {
+    //     cache: "no-store",
+    //     headers: {
+    //         authorization: `${process.env.API_KEY}`,
+    //     },
+    // });
 
     if (doctor_id && booking_date) {
         result = await fetch(
@@ -54,6 +55,6 @@ export async function GET(req: NextRequest) {
         );
     }
 
-    const data = await result.json();
+    const data = await result?.json();
     return NextResponse.json(data);
 }

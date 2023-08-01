@@ -44,7 +44,8 @@ export default function Home() {
                         className="img-intro"
                         height={200}
                         width={200}
-                        src="https://res.cloudinary.com/crimson-flamingo/image/upload/v1657329380/travelsite2022/washingtondc/6.jpg"
+                        quality={100}
+                        src="https://res.cloudinary.com/crimson-flamingo/image/upload/v1690913175/doctor/1.jpg"
                     />
                 </div>
             </section>

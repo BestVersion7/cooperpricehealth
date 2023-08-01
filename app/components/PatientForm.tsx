@@ -49,7 +49,12 @@ export default function PatientForm(props: Omit<IBooking, "booking_id">) {
                 doctor_id: props.doctor_id,
             });
 
-            router.push(`/booking/success/${data}`);
+            if (data === "error") {
+                throw new Error(
+                    "Something went wrong. Please try again later."
+                );
+            }
+            router.push(`/booking/success/${data.booking_id}`);
         } catch (err) {
             alert(err);
         }

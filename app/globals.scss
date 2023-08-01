@@ -81,6 +81,7 @@ ul {
 }
 .img-intro {
     @include imgRound();
+    object-fit: cover;
 }
 
 .team-container {
@@ -181,9 +182,12 @@ ul {
 }
 
 .main-booking {
-    margin: 0 2em;
+    margin: 0 1em;
+    @include mQ(30em) {
+        margin: 0 2em;
+    }
     @include mQ(50em) {
-        margin: 0 5em;
+        margin: 0 4em;
     }
 }
 
