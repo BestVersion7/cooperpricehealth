@@ -5,6 +5,7 @@ import { useEffect, useState, useReducer } from "react";
 import { patientFormReducer } from "../util/reducer";
 // import { formatPhone } from "../util/formatDate";
 import Button from "react-bootstrap/Button";
+import { useRouter } from "next/navigation";
 
 export default function PatientForm(props: Omit<IBooking, "booking_id">) {
     const initialState = {
@@ -21,6 +22,7 @@ export default function PatientForm(props: Omit<IBooking, "booking_id">) {
     // this is only patient form
     const [state, dispatch] = useReducer(patientFormReducer, initialState);
 
+    const router = useRouter();
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -39,13 +41,15 @@ export default function PatientForm(props: Omit<IBooking, "booking_id">) {
             patient_id = props.patient_id;
         }
         try {
+            // this will return the booking_id
             const data = await createBooking({
                 booking_date: props.booking_date,
                 booking_time: props.booking_time,
                 patient_id: patient_id,
                 doctor_id: props.doctor_id,
             });
-            console.log(data);
+
+            router.push(`/booking/success/${data}`);
         } catch (err) {
             alert(err);
         }

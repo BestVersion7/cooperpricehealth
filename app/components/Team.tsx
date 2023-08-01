@@ -14,7 +14,7 @@ type props = {
     showDesc?: boolean;
 };
 
-export default (props: props) => {
+export default function Team(props: props) {
     const initialState = {
         doctor_id: 0,
         patient_id: 1,
@@ -27,6 +27,7 @@ export default (props: props) => {
 
     const [therapists, setTherapists] = useState<IDoctor[]>([]);
     const [state, dispatch] = useReducer(bookingReducer, initialState);
+    const [successModal, setSuccessModal] = useState(false);
 
     const fetchTherapists = async (signal: AbortSignal) => {
         const result = await fetch(
@@ -133,4 +134,4 @@ export default (props: props) => {
             )}
         </>
     );
-};
+}

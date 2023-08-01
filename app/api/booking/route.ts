@@ -3,6 +3,7 @@ import { NextResponse, NextRequest } from "next/server";
 export async function GET(req: NextRequest) {
     const booking_date = req.nextUrl.searchParams.get("booking_date");
     const doctor_id = Number(req.nextUrl.searchParams.get("doctor_id"));
+    const booking_id = Number(req.nextUrl.searchParams.get("booking_id"));
 
     let result = await fetch("https://www.hunterkf.com/api/booking", {
         cache: "no-store",
@@ -39,6 +40,16 @@ export async function GET(req: NextRequest) {
                 headers: {
                     authorization: `${process.env.API_KEY}`,
                 },
+            }
+        );
+    } else if (booking_id) {
+        result = await fetch(
+            `https://www.hunterkf.com/api/booking?booking_id=${booking_id}`,
+            {
+                headers: {
+                    authorization: `${process.env.API_KEY}`,
+                },
+                cache: "force-cache",
             }
         );
     }

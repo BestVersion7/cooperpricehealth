@@ -14,7 +14,7 @@ type props = {
     dispatch: React.Dispatch<action>;
 };
 
-export default function Calendar(props: props) {
+export default function CalendarC(props: props) {
     const [date, setDate] = useState<Value>(convertedDate);
 
     // blackout dates before today and blackout days 60 days in advance

@@ -1,4 +1,4 @@
-export const formatDate = (date: any) => {
+export const formatDate = (date: Date) => {
     const newData = date.toISOString();
     return newData.split("T")[0];
 };

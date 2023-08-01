@@ -113,9 +113,9 @@ export default function Home() {
                 </div>
                 <div>
                     <p>
-                        "The therapist that I met has helped me through so much
+                        {`"The therapist that I met has helped me through so much
                         in these tough times. I am in a much happier place than
-                        before."
+                        before."`}
                     </p>
                     <p>- Julia T.</p>
                     <ButtonLink color="warning">
