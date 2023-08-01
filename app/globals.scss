@@ -231,6 +231,9 @@ th {
 }
 
 .calendar-wrapper {
+    @include mQ(30em) {
+        margin: 0 1em;
+    }
     @include mQ(50em) {
         display: grid;
         grid-gap: 3em;

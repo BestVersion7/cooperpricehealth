@@ -51,17 +51,15 @@ export default function CalendarC(props: props) {
     };
 
     return (
-        <div>
-            <Calendar
-                // add this for aria label server is US and my client is UK
-                formatLongDate={(locale, date) => formatDate(date)}
-                value={date}
-                onChange={setDate}
-                minDate={today}
-                maxDate={today40}
-                tileDisabled={({ date }) => date.getDay() === 0}
-                onClickDay={(date) => handleDispatch(date)}
-            />
-        </div>
+        <Calendar
+            // add this for aria label server is US and my client is UK
+            formatLongDate={(locale, date) => formatDate(date)}
+            value={date}
+            onChange={setDate}
+            minDate={today}
+            maxDate={today40}
+            tileDisabled={({ date }) => date.getDay() === 0}
+            onClickDay={(date) => handleDispatch(date)}
+        />
     );
 }
